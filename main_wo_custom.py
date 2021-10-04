@@ -8,11 +8,13 @@ from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 import plotly.express as px
 import plotly.graph_objects as go
-from stats import df, zipped_ind
+import pandas as pd
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.DARKLY])
 server = app.server
 
+df = pd.read_csv('ind_nifty500list.csv', usecols=['Company Name', 'Industry', 'Symbol'])
+zipped_ind = pd.DataFrame(zip(df['Symbol'], df['Industry']))
 
 NAV_STYLE = {
     'padding':'1rem',
